@@ -1,0 +1,6 @@
+{
+  "whitelist": [],
+  "plugins": [
+    "./index.js"
+  ]
+}

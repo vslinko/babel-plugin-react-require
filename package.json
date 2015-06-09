@@ -1,0 +1,11 @@
+{
+  "name": "babel-react-require",
+  "version": "1.0.0",
+  "scripts": {
+    "prepublish": "npm run build-examples",
+    "build-examples": "babel examples -d built-examples"
+  },
+  "devDependencies": {
+    "babel": "5.5.6"
+  }
+}

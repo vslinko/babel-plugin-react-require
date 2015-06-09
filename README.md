@@ -2,6 +2,9 @@
 
 Babel plugin that adds React import declaration if file contains JSX tags.
 
+This plugin is only about dumb components that doesn't extends `React.Component`.
+If you want to use any other React functions then you should import their by yourself.
+
 ## Example
 
 Your `component.js` that contains this code:

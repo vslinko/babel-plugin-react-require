@@ -1,6 +1,6 @@
 {
-  "name": "babel-react-require",
-  "version": "1.0.0",
+  "name": "babel-plugin-react-require",
+  "version": "1.0.1",
   "scripts": {
     "prepublish": "npm run build-examples",
     "build-examples": "babel examples -d built-examples"

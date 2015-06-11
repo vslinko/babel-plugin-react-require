@@ -1,4 +1,4 @@
-# babel-react-require
+# babel-plugin-react-require
 
 Babel plugin that adds React import declaration if file contains JSX tags.
 
@@ -32,18 +32,18 @@ export default class Component {
 
 ## Usage
 
-* Install babel-react-require
+* Install babel-plugin-react-require
 
 ```
-npm install babel-react-require --save-dev
+npm install babel-plugin-react-require --save-dev
 ```
 
-* Add babel-react-require into `.babelrc`
+* Add react-require into `.babelrc`
 
 ```
 {
   "plugins": [
-    "babel-react-require"
+    "react-require"
   ]
 }
 ```

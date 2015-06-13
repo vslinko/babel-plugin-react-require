@@ -1,11 +1,58 @@
 {
   "name": "babel-plugin-react-require",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "description": "Babel plugin that adds React import declaration if file contains JSX tags.",
+  "keywords": [
+    "babel",
+    "babel-plugin",
+    "react",
+    "jsx"
+  ],
+  "homepage": "https://github.com/vslinko/babel-plugin-react-require",
+  "bugs": {
+    "url": "https://github.com/vslinko/babel-plugin-react-require/issues",
+    "email": "vslinko@yahoo.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Vyacheslav Slinko",
+    "email": "vslinko@yahoo.com",
+    "url": "https://twitter.com/vslinko"
+  },
+  "contributors": [
+  ],
+  "main": "lib",
+  "bin": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "vslinko/babel-plugin-react-require"
+  },
   "scripts": {
     "prepublish": "npm run build-examples",
     "build-examples": "babel examples -d built-examples"
   },
+  "config": {
+  },
+  "dependencies": {
+  },
   "devDependencies": {
     "babel": "5.5.6"
+  },
+  "peerDependencies": {
+  },
+  "bundledDependencies": [
+  ],
+  "optionalDependencies": {
+  },
+  "engines": {
+  },
+  "os": [
+  ],
+  "cpu": [
+  ],
+  "preferGlobal": false,
+  "private": false,
+  "publishConfig": {
   }
 }

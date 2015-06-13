@@ -1,6 +1,6 @@
 {
   "whitelist": [],
   "plugins": [
-    "./index.js"
+    "./lib/index.js"
   ]
 }

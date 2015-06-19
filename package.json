@@ -30,14 +30,18 @@
   },
   "scripts": {
     "prepublish": "npm run build-examples",
-    "build-examples": "babel examples -d built-examples"
+    "build-examples": "babel examples -d built-examples",
+    "lint": "eslint lib examples"
   },
   "config": {
   },
   "dependencies": {
   },
   "devDependencies": {
-    "babel": "5.5.6"
+    "babel": "5.5.8",
+    "eslint": "0.23.0",
+    "eslint-plugin-react": "2.5.2",
+    "babel-eslint": "3.1.17"
   },
   "peerDependencies": {
   },

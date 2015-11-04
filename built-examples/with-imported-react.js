@@ -1,9 +1,7 @@
 import React from 'react';
 
-class Component {
+export default class Component {
   render() {
     return <div />;
   }
 }
-
-export default Component;

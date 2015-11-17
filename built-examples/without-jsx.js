@@ -1,7 +1,5 @@
-class Component {
+export default class Component {
   render() {
     return null;
   }
 }
-
-export default Component;

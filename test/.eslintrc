@@ -1,9 +1,5 @@
 {
   "env": {
     "mocha": true
-  },
-  "globals": {
-    "chai": true,
-    "assert": true
   }
 }

@@ -16,12 +16,12 @@ export default function ({ types: t }) {
           }
 
           const reactImportDeclaration = t.importDeclaration([
-            t.importDefaultSpecifier(t.identifier('React'))
+            t.importDefaultSpecifier(t.identifier('React')),
           ], t.stringLiteral('react'));
 
           node.body.unshift(reactImportDeclaration);
-        }
-      }
-    }
+        },
+      },
+    },
   };
 }

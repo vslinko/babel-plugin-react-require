@@ -1,5 +1,5 @@
 export default class Component {
   render() {
-    return <div />
+    return <div />;
   }
 }

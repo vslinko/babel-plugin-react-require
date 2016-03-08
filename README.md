@@ -32,13 +32,13 @@ export default function Component() {
 
 ## Usage
 
-* Install babel-plugin-react-require
+* Install `babel-plugin-react-require`.
 
 ```
 npm install babel-plugin-react-require --save-dev
 ```
 
-* Add react-require into `.babelrc`
+* Add `react-require` into `.babelrc`. This plugin should be defined before `transform-es2015-modules-commonjs` plugin because it's using ES2015 modules syntax to import `React` into scope.
 
 ```json
 {

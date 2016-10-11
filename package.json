@@ -19,9 +19,7 @@
     "email": "vslinko@yahoo.com",
     "url": "https://twitter.com/vslinko"
   },
-  "contributors": [],
   "main": "lib",
-  "bin": {},
   "repository": {
     "type": "git",
     "url": "vslinko/babel-plugin-react-require"
@@ -35,8 +33,6 @@
     "test": "mocha --compilers js:babel-core/register",
     "test-coverage": "npm run build && istanbul instrument --output lib-cov lib && mocha --reporter mocha-istanbul"
   },
-  "config": {},
-  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.2.0",
     "babel-core": "^6.3.2",
@@ -56,11 +52,5 @@
     "mocha": "^2.3.4",
     "mocha-istanbul": "^0.2.0",
     "rimraf": "^2.4.4"
-  },
-  "peerDependencies": {},
-  "bundledDependencies": [],
-  "optionalDependencies": {},
-  "preferGlobal": false,
-  "private": false,
-  "publishConfig": {}
+  }
 }

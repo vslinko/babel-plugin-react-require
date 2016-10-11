@@ -1,23 +1,20 @@
-'use strict';
-
 const babel = require('babel-core');
 const assert = require('assert');
+
 let reactPlugin;
 let transform;
 
 try {
-  reactPlugin = require('../lib-cov/index').default;
+  reactPlugin = require('../lib-cov/index').default; // eslint-disable-line import/no-unresolved
 } catch (error) {
   reactPlugin = require('../src/index').default;
 }
 
 describe('babel-plugin-react', () => {
   beforeEach(() => {
-    transform = (code) => {
-      return babel.transform(code, {
-        plugins: ['syntax-jsx', reactPlugin],
-      }).code;
-    };
+    transform = code => babel.transform(code, {
+      plugins: ['syntax-jsx', reactPlugin],
+    }).code;
   });
 
   it('should return transpiled code with required React', () => {

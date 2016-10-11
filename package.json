@@ -60,9 +60,6 @@
   "peerDependencies": {},
   "bundledDependencies": [],
   "optionalDependencies": {},
-  "engines": {},
-  "os": [],
-  "cpu": [],
   "preferGlobal": false,
   "private": false,
   "publishConfig": {}

@@ -27,7 +27,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "build": "babel src -d lib",
-    "build-examples": "babel examples -d built-examples",
+    "build-examples": "npm run build && babel examples -d built-examples",
     "lint": "eslint src examples test",
     "prepublish": "npm run clean && npm run build && npm run build-examples",
     "test": "mocha --compilers js:babel-core/register",

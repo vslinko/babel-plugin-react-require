@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-require",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Babel plugin that adds React import declaration if file contains JSX tags.",
   "keywords": [
     "babel",

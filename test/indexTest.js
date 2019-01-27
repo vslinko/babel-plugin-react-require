@@ -1,12 +1,12 @@
-const babel = require('babel-core');
+const babel = require('@babel/core');
 const assert = require('assert');
 
 let reactPlugin;
 let transform;
 
-try {
+if (process.env.COVERAGE) {
   reactPlugin = require('../lib-cov/index').default; // eslint-disable-line import/no-unresolved
-} catch (error) {
+} else {
   reactPlugin = require('../src/index').default;
 }
 
@@ -49,12 +49,12 @@ const somePluginCrazy = () => ({
 });
 
 const genericInput = 'export default class Component {render() {return <div />}}';
-const genericOutput = 'import React from "react";\nexport default class Component {\n  render() {\n    return <div />;\n  }\n}';
+const genericOutput = 'import React from "react";\nexport default class Component {\n  render() {\n    return <div />;\n  }\n\n}';
 
 describe('babel-plugin-react', () => {
   beforeEach(() => {
     transform = (code, pluginsBefore = [], pluginsAfter = []) => babel.transform(code, {
-      plugins: ['syntax-jsx', ...pluginsBefore, reactPlugin, ...pluginsAfter],
+      plugins: ['@babel/plugin-syntax-jsx', ...pluginsBefore, reactPlugin, ...pluginsAfter],
     }).code;
   });
 
@@ -73,14 +73,14 @@ describe('babel-plugin-react', () => {
   it('should check that plugin does not import React twice', () => {
     const transformed = transform('class Component{render(){return <div/>}} class Component2{render(){return <div />}}');
 
-    assert.equal(transformed, 'import React from "react";\nclass Component {\n  render() {\n    return <div />;\n  }\n}'
-      + 'class Component2 {\n  render() {\n    return <div />;\n  }\n}');
+    assert.equal(transformed, 'import React from "react";\n\nclass Component {\n  render() {\n    return <div />;\n  }\n\n}\n\n'
+      + 'class Component2 {\n  render() {\n    return <div />;\n  }\n\n}');
   });
 
   it('should does not replace users import on plugins import', () => {
     const transformed = transform('import React from"react/addons"\nclass Component{render(){return <div/>}}');
 
-    assert.equal(transformed, 'import React from "react/addons";\nclass Component {\n  render() {\n    return <div />;\n  }\n}');
+    assert.equal(transformed, 'import React from "react/addons";\n\nclass Component {\n  render() {\n    return <div />;\n  }\n\n}');
   });
 
   it('should get along with other plugins which add React import', () => {
@@ -97,6 +97,6 @@ describe('babel-plugin-react', () => {
   });
 
   it('should not blow up if another plugin removes our import', () => {
-    assert.equal(transform(genericInput, [], [somePluginCrazy]), 'export default class Component {\n  render() {\n    return <div />;\n  }\n}');
+    assert.equal(transform(genericInput, [], [somePluginCrazy]), 'export default class Component {\n  render() {\n    return <div />;\n  }\n\n}');
   });
 });

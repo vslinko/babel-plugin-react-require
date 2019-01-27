@@ -3,6 +3,11 @@ export default function ({ types: t }) {
     visitor: {
       Program: {
         enter(path, { file }) {
+          // Do nothing if React is already declared
+          if (path.scope.hasBinding('React')) {
+            return;
+          }
+
           const ourNode = t.importDeclaration([
             t.importDefaultSpecifier(t.identifier('React')),
           ], t.stringLiteral('react'));

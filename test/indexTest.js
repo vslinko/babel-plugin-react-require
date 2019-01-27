@@ -32,6 +32,14 @@ const somePluginExit = ({ types: t }) => ({
   },
 });
 
+const somePluginThatCrawl = () => ({
+  visitor: {
+    Program(path) {
+      path.scope.crawl();
+    },
+  },
+});
+
 const somePluginCrazy = () => ({
   visitor: {
     Program(_, { file }) {
@@ -80,6 +88,12 @@ describe('babel-plugin-react', () => {
     assert.equal(transform(genericInput, [somePluginExit]), genericOutput);
     assert.equal(transform(genericInput, [], [somePluginEnter]), genericOutput);
     assert.equal(transform(genericInput, [], [somePluginExit]), genericOutput);
+  });
+
+  it('should work with other plugins which use scope.crawl on files which already contains React import', () => {
+    const transformed = transform('import * as React from "react";', [], [somePluginThatCrawl]);
+
+    assert.equal(transformed, 'import * as React from "react";');
   });
 
   it('should not blow up if another plugin removes our import', () => {

@@ -46,6 +46,10 @@ export default function ({ types: t }) {
       JSXOpeningElement(_, { file }) {
         file.set('hasJSX', true);
       },
+
+      JSXOpeningFragment(_, { file }) {
+        file.set('hasJSX', true);
+      },
     },
   };
 }

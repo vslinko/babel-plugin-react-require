@@ -99,4 +99,10 @@ describe('babel-plugin-react', () => {
   it('should not blow up if another plugin removes our import', () => {
     assert.equal(transform(genericInput, [], [somePluginCrazy]), 'export default class Component {\n  render() {\n    return <div />;\n  }\n\n}');
   });
+
+  it('should support JSX fragments', () => {
+    const transformed = transform('function Thing() {\n  return <>Hi</>;\n}');
+
+    assert.equal(transformed, 'import React from "react";\n\nfunction Thing() {\n  return <>Hi</>;\n}');
+  });
 });

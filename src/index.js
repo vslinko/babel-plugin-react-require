@@ -1,5 +1,5 @@
 export default function ({ types: t }) {
-  return {
+  const plugin = {
     visitor: {
       Program: {
         enter(path, { file }) {
@@ -46,10 +46,14 @@ export default function ({ types: t }) {
       JSXOpeningElement(_, { file }) {
         file.set('hasJSX', true);
       },
-
-      JSXOpeningFragment(_, { file }) {
-        file.set('hasJSX', true);
-      },
     },
   };
+
+  if (t.jSXOpeningFragment) {
+    plugin.visitor.JSXOpeningFragment = (_, { file }) => {
+      file.set('hasJSX', true);
+    };
+  }
+
+  return plugin;
 }

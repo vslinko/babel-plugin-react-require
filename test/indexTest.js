@@ -1,4 +1,5 @@
-const babel = require('@babel/core');
+const babel7 = require('@babel/core');
+const babel6 = require('babel-core');
 const assert = require('assert');
 
 let reactPlugin;
@@ -53,7 +54,7 @@ const genericOutput = 'import React from "react";\nexport default class Componen
 
 describe('babel-plugin-react', () => {
   beforeEach(() => {
-    transform = (code, pluginsBefore = [], pluginsAfter = []) => babel.transform(code, {
+    transform = (code, pluginsBefore = [], pluginsAfter = []) => babel7.transform(code, {
       plugins: ['@babel/plugin-syntax-jsx', ...pluginsBefore, reactPlugin, ...pluginsAfter],
     }).code;
   });
@@ -88,6 +89,14 @@ describe('babel-plugin-react', () => {
     assert.equal(transform(genericInput, [somePluginExit]), genericOutput);
     assert.equal(transform(genericInput, [], [somePluginEnter]), genericOutput);
     assert.equal(transform(genericInput, [], [somePluginExit]), genericOutput);
+  });
+
+  it('should work with babel6', () => {
+    const transformed = babel6.transform('const Z = () => <div />;', {
+      plugins: ['babel-plugin-syntax-jsx', reactPlugin],
+    }).code;
+
+    assert.equal(transformed, 'import React from "react";\nconst Z = () => <div />;');
   });
 
   it('should work with other plugins which use scope.crawl on files which already contains React import', () => {

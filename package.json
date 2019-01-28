@@ -25,13 +25,13 @@
     "url": "vslinko/babel-plugin-react-require"
   },
   "scripts": {
-    "clean": "rimraf lib",
+    "clean": "rimraf coverage lib",
     "build": "babel src -d lib",
     "build-examples": "babel examples -d built-examples",
-    "lint": "eslint --ext js,jsx src test",
+    "lint": "eslint src test",
     "prepare": "npm run clean && npm run build && npm run build-examples",
-    "test": "mocha --require @babel/register",
-    "test-coverage": "npm run build && istanbul instrument --output lib-cov lib && COVERAGE=1 mocha --reporter mocha-istanbul"
+    "test": "jest",
+    "test-coverage": "jest --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -45,17 +45,13 @@
     "@babel/plugin-transform-shorthand-properties": "^7.2.0",
     "@babel/register": "^7.0.0",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "chai": "^4.2.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.15.0",
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.12.4",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
-    "mocha-istanbul": "^0.3.0",
+    "jest": "^24.0.0",
     "rimraf": "^2.5.4"
   }
 }

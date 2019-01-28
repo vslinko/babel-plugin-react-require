@@ -24,7 +24,9 @@ export default function ({ types: t }) {
           // likely that said plugin will also add a React import too.
           const ourPath = file.get('ourPath');
           if (ourPath && !file.get('hasJSX')) {
-            if (!ourPath.removed) ourPath.remove();
+            if (!ourPath.removed) {
+              ourPath.remove();
+            }
             file.set('ourPath', undefined);
           }
         },
@@ -32,13 +34,17 @@ export default function ({ types: t }) {
 
       ImportDeclaration(path, { file }) {
         // Return early if this has nothing to do with React
-        if (path.node.specifiers.every(x => x.local.name !== 'React')) return;
+        if (path.node.specifiers.every(x => x.local.name !== 'React')) {
+          return;
+        }
 
         // If our import is still intact and we encounter some other import
         // which also imports `React`, then we remove ours.
         const ourPath = file.get('ourPath');
         if (ourPath && path !== ourPath) {
-          if (!ourPath.removed) ourPath.remove();
+          if (!ourPath.removed) {
+            ourPath.remove();
+          }
           file.set('ourPath', undefined);
         }
       },

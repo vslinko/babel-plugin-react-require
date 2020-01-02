@@ -13,7 +13,9 @@ export default function ({ types: t }) {
           ], t.stringLiteral('react'));
 
           // Add an import early, so that other plugins get to see it
-          file.set('ourPath', path.unshiftContainer('body', ourNode)[0]);
+          const [newPath] = path.unshiftContainer('body', ourNode);
+          newPath.get('specifiers').forEach((specifier) => { path.scope.registerBinding('module', specifier); });
+          file.set('ourPath', newPath);
         },
 
         exit(_, { file }) {

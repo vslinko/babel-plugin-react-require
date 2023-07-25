@@ -3,7 +3,7 @@ const reactPlugin = require("../lib/index");
 
 function transform(
   code,
-  { pluginsBefore = [], pluginsAfter = [], filename = "test.js" } = {}
+  { pluginsBefore = [], pluginsAfter = [], filename = "test.js" } = {},
 ) {
   return babel.transform(code, {
     filename,
@@ -24,8 +24,8 @@ const somePluginEnter = ({ types: t }) => ({
         "body",
         t.importDeclaration(
           [t.importDefaultSpecifier(t.identifier("React"))],
-          t.stringLiteral("react")
-        )
+          t.stringLiteral("react"),
+        ),
       );
     },
   },
@@ -39,8 +39,8 @@ const somePluginExit = ({ types: t }) => ({
           "body",
           t.importDeclaration(
             [t.importDefaultSpecifier(t.identifier("React"))],
-            t.stringLiteral("react")
-          )
+            t.stringLiteral("react"),
+          ),
         );
       },
     },
@@ -77,7 +77,7 @@ describe("babel-plugin-react", () => {
 
   it("should return not transpiled code", () => {
     const transformed = transform(
-      'import x from "y";\nconsole.log("hello world")'
+      'import x from "y";\nconsole.log("hello world")',
     );
 
     expect(transformed).toBe('import x from "y";\nconsole.log("hello world");');
@@ -85,37 +85,37 @@ describe("babel-plugin-react", () => {
 
   it("should check that plugin does not import React twice", () => {
     const transformed = transform(
-      "class Component{render(){return <div/>}} class Component2{render(){return <div />}}"
+      "class Component{render(){return <div/>}} class Component2{render(){return <div />}}",
     );
 
     expect(transformed).toBe(
       'import React from "react";\nclass Component {\n  render() {\n    return <div />;\n  }\n}\n' +
-        "class Component2 {\n  render() {\n    return <div />;\n  }\n}"
+        "class Component2 {\n  render() {\n    return <div />;\n  }\n}",
     );
   });
 
   it("should does not replace users import on plugins import", () => {
     const transformed = transform(
-      'import React from"react/addons"\nclass Component{render(){return <div/>}}'
+      'import React from"react/addons"\nclass Component{render(){return <div/>}}',
     );
 
     expect(transformed).toBe(
-      'import React from "react/addons";\nclass Component {\n  render() {\n    return <div />;\n  }\n}'
+      'import React from "react/addons";\nclass Component {\n  render() {\n    return <div />;\n  }\n}',
     );
   });
 
   it("should get along with other plugins which add React import", () => {
     expect(transform(genericInput, { pluginsBefore: [somePluginEnter] })).toBe(
-      genericOutput
+      genericOutput,
     );
     expect(transform(genericInput, { pluginsBefore: [somePluginExit] })).toBe(
-      genericOutput
+      genericOutput,
     );
     expect(transform(genericInput, { pluginsAfter: [somePluginEnter] })).toBe(
-      genericOutput
+      genericOutput,
     );
     expect(transform(genericInput, { pluginsAfter: [somePluginExit] })).toBe(
-      genericOutput
+      genericOutput,
     );
   });
 
@@ -129,16 +129,16 @@ describe("babel-plugin-react", () => {
 
   it("should not blow up if another plugin removes our import", () => {
     expect(transform(genericInput, { pluginsAfter: [somePluginCrazy] })).toBe(
-      "export default class Component {\n  render() {\n    return <div />;\n  }\n}"
+      "export default class Component {\n  render() {\n    return <div />;\n  }\n}",
     );
     expect(transform("const x = 1;", { pluginsAfter: [somePluginCrazy] })).toBe(
-      "const x = 1;"
+      "const x = 1;",
     );
     expect(
       transform("", {
         pluginsBefore: [somePluginEnter],
         pluginsAfter: [somePluginCrazy],
-      })
+      }),
     ).toBe('import React from "react";');
   });
 
@@ -146,7 +146,7 @@ describe("babel-plugin-react", () => {
     const transformed = transform("function Thing() {\n  return <>Hi</>;\n}");
 
     expect(transformed).toBe(
-      'import React from "react";\nfunction Thing() {\n  return <>Hi</>;\n}'
+      'import React from "react";\nfunction Thing() {\n  return <>Hi</>;\n}',
     );
   });
 
@@ -157,7 +157,7 @@ describe("babel-plugin-react", () => {
     });
 
     expect(transformed).toBe(
-      'import React from "react";\nvar svg = function svg(props) {\n  return <svg {...props}><path fill="none" stroke="#000" strokeWidth="5" strokeOpacity=".5" d="M0 0h400v400H0z" /></svg>;\n};\nsvg.defaultProps = {\n  xmlns: "http://www.w3.org/2000/svg"\n};'
+      'import React from "react";\nvar svg = function svg(props) {\n  return <svg {...props}><path fill="none" stroke="#000" strokeWidth="5" strokeOpacity=".5" d="M0 0h400v400H0z" /></svg>;\n};\nsvg.defaultProps = {\n  xmlns: "http://www.w3.org/2000/svg"\n};',
     );
   });
 });

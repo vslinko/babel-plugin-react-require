@@ -33,13 +33,13 @@
     "test-coverage": "jest --coverage"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.5",
-    "@babel/core": "^7.21.8",
-    "@babel/plugin-syntax-jsx": "^7.21.4",
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/plugin-syntax-jsx": "^7.22.5",
     "babel-plugin-inline-react-svg": "^2.0.2",
-    "eslint": "^8.40.0",
-    "jest": "^29.5.0",
-    "prettier": "^2.8.8",
-    "rimraf": "^5.0.0"
+    "eslint": "^8.45.0",
+    "jest": "^29.6.1",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1"
   }
 }

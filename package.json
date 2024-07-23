@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-require",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Babel plugin that adds React import declaration if file contains JSX tags.",
   "keywords": [
     "babel",
@@ -22,7 +22,7 @@
   "main": "lib",
   "repository": {
     "type": "git",
-    "url": "vslinko/babel-plugin-react-require"
+    "url": "git+https://github.com/vslinko/babel-plugin-react-require.git"
   },
   "scripts": {
     "clean": "rimraf coverage",
